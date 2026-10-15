@@ -1,22 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lava-Jato Palmares | Estética Automotiva</title>
-  <meta name="description" content="Lava-Jato Palmares — estética automotiva completa na BR-093.">
 
   <style>
-    :root {
-      --verde: #087f5b;
-      --verde-escuro: #064b38;
-      --amarelo: #ffd43b;
-      --cinza: #f3f6f5;
-      --texto: #1f2933;
-      --branco: #ffffff;
-    }
-
     * {
       box-sizing: border-box;
       scroll-behavior: smooth;
@@ -24,16 +13,16 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--texto);
-      background: var(--cinza);
+      font-family: Arial, sans-serif;
+      color: #1f2933;
+      background: #f3f6f5;
       line-height: 1.6;
     }
 
     header {
-      min-height: 620px;
-      padding: 35px 20px 70px;
-      color: var(--branco);
+      min-height: 600px;
+      padding: 30px 20px 70px;
+      color: white;
       text-align: center;
       background:
         linear-gradient(#064b38dd, #087f5bdd),
@@ -44,7 +33,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: min(1100px, 94%);
+      max-width: 1100px;
       margin: auto;
     }
 
@@ -72,7 +61,7 @@
     }
 
     .hero p {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
 
     .botoes,
@@ -87,18 +76,16 @@
     .botao {
       display: inline-block;
       padding: 14px 22px;
-      border: 0;
       border-radius: 8px;
       color: #172b24;
-      background: var(--amarelo);
+      background: #ffd43b;
       text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
     }
 
     .botao.verde {
       color: white;
-      background: var(--verde);
+      background: #087f5b;
     }
 
     main {
@@ -116,7 +103,7 @@
 
     h2 {
       margin-top: 0;
-      color: var(--verde-escuro);
+      color: #064b38;
       font-size: 2rem;
     }
 
@@ -135,7 +122,7 @@
 
     .card h3 {
       margin-top: 0;
-      color: var(--verde);
+      color: #087f5b;
     }
 
     .sobre {
@@ -155,7 +142,7 @@
     .informacoes {
       margin-top: 20px;
       padding: 18px;
-      border-left: 5px solid var(--amarelo);
+      border-left: 5px solid #ffd43b;
       background: #fffbea;
     }
 
@@ -163,7 +150,7 @@
       padding: 30px 20px;
       color: white;
       text-align: center;
-      background: var(--verde-escuro);
+      background: #064b38;
     }
 
     .whatsapp-flutuante {
@@ -212,6 +199,7 @@
   <header id="inicio">
     <nav>
       <div class="marca">Lava-Jato Palmares</div>
+
       <div>
         <a href="#servicos">Serviços</a>
         <a href="#agendamento">Agendamento</a>
@@ -250,26 +238,76 @@
       <h2>Serviços prestados</h2>
 
       <div class="grade">
-        <div class="card"><h3>Lavagem básica</h3><p>Limpeza externa para manter o veículo limpo e apresentável.</p></div>
-        <div class="card"><h3>Lavagem detalhada</h3><p>Limpeza cuidadosa da carroceria, rodas, pneus e detalhes.</p></div>
-        <div class="card"><h3>Limpeza interna</h3><p>Aspiração, limpeza do painel, portas, tapetes e acabamento.</p></div>
-        <div class="card"><h3>Higienização</h3><p>Higienização de bancos, carpetes, teto e interior do veículo.</p></div>
-        <div class="card"><h3>Limpeza e hidratação de couro</h3><p>Cuidados especiais para conservar bancos e revestimentos de couro.</p></div>
-        <div class="card"><h3>Polimento técnico</h3><p>Tratamento da pintura para melhorar brilho e acabamento.</p></div>
-        <div class="card"><h3>Enceramento e proteção</h3><p>Proteção para realçar o brilho e conservar a pintura.</p></div>
-        <div class="card"><h3>Revitalização de plásticos</h3><p>Recuperação visual de partes plásticas externas e internas.</p></div>
-        <div class="card"><h3>Limpeza de motor</h3><p>Limpeza cuidadosa do compartimento do motor.</p></div>
-        <div class="card"><h3>Remoção de manchas e odores</h3><p>Tratamento para melhorar o aspecto e o cheiro do interior.</p></div>
-        <div class="card"><h3>Detalhamento completo</h3><p>Serviço completo de estética automotiva, do básico ao avançado.</p></div>
-        <div class="card"><h3>Outros serviços</h3><p>Consulte a disponibilidade e faça um orçamento pelo WhatsApp.</p></div>
+        <div class="card">
+          <h3>Lavagem básica</h3>
+          <p>Limpeza externa para manter o veículo limpo e apresentável.</p>
+        </div>
+
+        <div class="card">
+          <h3>Lavagem detalhada</h3>
+          <p>Limpeza cuidadosa da carroceria, rodas, pneus e detalhes.</p>
+        </div>
+
+        <div class="card">
+          <h3>Limpeza interna</h3>
+          <p>Aspiração, limpeza do painel, portas, tapetes e acabamento.</p>
+        </div>
+
+        <div class="card">
+          <h3>Higienização</h3>
+          <p>Higienização de bancos, carpetes, teto e interior do veículo.</p>
+        </div>
+
+        <div class="card">
+          <h3>Limpeza e hidratação de couro</h3>
+          <p>Cuidados especiais para conservar bancos e revestimentos de couro.</p>
+        </div>
+
+        <div class="card">
+          <h3>Polimento técnico</h3>
+          <p>Tratamento da pintura para melhorar brilho e acabamento.</p>
+        </div>
+
+        <div class="card">
+          <h3>Enceramento e proteção</h3>
+          <p>Proteção para realçar o brilho e conservar a pintura.</p>
+        </div>
+
+        <div class="card">
+          <h3>Revitalização de plásticos</h3>
+          <p>Recuperação visual de partes plásticas externas e internas.</p>
+        </div>
+
+        <div class="card">
+          <h3>Limpeza de motor</h3>
+          <p>Limpeza cuidadosa do compartimento do motor.</p>
+        </div>
+
+        <div class="card">
+          <h3>Remoção de manchas e odores</h3>
+          <p>Tratamento para melhorar o aspecto e o cheiro do interior.</p>
+        </div>
+
+        <div class="card">
+          <h3>Detalhamento completo</h3>
+          <p>Serviço completo de estética automotiva, do básico ao avançado.</p>
+        </div>
+
+        <div class="card">
+          <h3>Outros serviços</h3>
+          <p>Consulte a disponibilidade e faça um orçamento pelo WhatsApp.</p>
+        </div>
       </div>
     </section>
 
     <section id="agendamento">
       <h2>Agende seu atendimento</h2>
-      <p>Fale conosco pelo WhatsApp para informar seus dados, veículo, serviço desejado, data e horário preferidos.</p>
+      <p>Fale conosco pelo WhatsApp para informar seus dados, veículo, serviço, data e horário preferidos.</p>
       <p><strong>Importante:</strong> o horário será confirmado pelo WhatsApp.</p>
-      <a class="botao" href="https://wa.me/557197099316" target="_blank">Agendar pelo WhatsApp</a>
+
+      <a class="botao" href="https://wa.me/557197099316" target="_blank">
+        Agendar pelo WhatsApp
+      </a>
     </section>
 
     <section id="contato">
@@ -290,11 +328,12 @@
     </section>
   </main>
 
-  <a class="whatsapp-flutuante" href="https://wa.me/557197099316" target="_blank">WhatsApp</a>
+  <a class="whatsapp-flutuante" href="https://wa.me/557197099316" target="_blank">
+    WhatsApp
+  </a>
 
   <footer>
     © 2026 Lava-Jato Palmares — Estética Automotiva
   </footer>
 </body>
 </html>
-```
