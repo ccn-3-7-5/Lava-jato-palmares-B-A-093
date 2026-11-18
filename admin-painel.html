@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Administrativo - Lava-Jato Palmares</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f9; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 100%; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        #message { margin-top: 15px; color: #555; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Acesso Restrito</h2>
+        <p>Digite o e-mail de administrador para receber o link mágico de acesso.</p>
+        
+        <input type="email" id="emailInput" placeholder="Seu e-mail de admin aqui">
+        <button onclick="enviarLink()">Enviar Link Mágico</button>
+        
+        <div id="message"></div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDOnB_h4X_2qWjiw5fSuK8w0i8e_NAXByY",
+            authDomain: "lava-jato-palmares-b-a-093.firebaseapp.com",
+            projectId: "lava-jato-palmares-b-a-093",
+            storageBucket: "lava-jato-palmares-b-a-093.firebasestorage.app",
+            messagingSenderId: "170054342057",
+            appId: "1:170054342057:web:f86f0794a66a4cae06a0b8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // O seu e-mail EXATO, sem hífen.
+        const adminEmail = "lavajotapalmares375@gmail.com";
+        
+        const actionCodeSettings = {
+            url: 'https://ccn-3-7-5.github.io/Lava-jato-palmares-B-A-093/painel-admin.html', 
+            handleCodeInApp: true,
+        };
+
+        window.enviarLink = function() {
+            const email = document.getElementById('emailInput').value;
+            
+            // Compara os e-mails ignorando maiúsculas/minúsculas
+            if (email.toLowerCase() !== adminEmail.toLowerCase()) {
+                document.getElementById('message').style.color = "red";
+                document.getElementById('message').innerText = "Acesso negado. Este e-mail não é de administrador.";
+                return;
+            }
+
+            sendSignInLinkToEmail(auth, adminEmail, actionCodeSettings)
+                .then(() => {
+                    window.localStorage.setItem('emailForSignIn', adminEmail);
+                    document.getElementById('message').style.color = "green";
+                    document.getElementById('message').innerText = "Link enviado! Verifique seu e-mail.";
+                })
+                .catch((error) => {
+                    document.getElementById('message').style.color = "red";
+                    document.getElementById('message').innerText = "Erro: " + error.message;
+                });
+        };
+
+        if (isSignInWithEmailLink(auth, window.location.href)) {
+            let email = window.localStorage.getItem('emailForSignIn');
+            if (!email) {
+                email = window.prompt('Por favor, confirme seu e-mail para completar o login:');
+            }
+
+            signInWithEmailLink(auth, email, window.location.href)
+                .then((result) => {
+                    window.localStorage.removeItem('emailForSignIn');
+                    document.querySelector('.container h2').innerText = "Acesso Liberado!";
+                    document.getElementById('emailInput').style.display = 'none';
+                    document.querySelector('button').style.display = 'none';
+                    document.getElementById('message').innerText = "";
+                    document.querySelector('.container').style.backgroundColor = "#d4edda";
+                })
+                .catch((error) => {
+                    document.getElementById('message').innerText = "Erro ao fazer login: " + error.message;
+                });
+        }
+    </script>
+</body>
+</html>
