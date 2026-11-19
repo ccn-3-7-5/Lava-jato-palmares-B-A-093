@@ -30,33 +30,34 @@
         </div>
     </div>
 
-    <!-- SDK do Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // Configuração do seu Firebase (Pegue essas informações no console do Firebase em Configurações do Projeto)
+        // Configuração exata do seu Firebase Web
         const firebaseConfig = {
-            apiKey: "SUA_API_KEY_AQUI",
+            apiKey: "AIzaSyDOnB_h4X_2qWjiw5fSuK8w0i8e_NAXByY",
             authDomain: "lava-jato-palmares-b-a-093.firebaseapp.com",
             projectId: "lava-jato-palmares-b-a-093",
-            storageBucket: "lava-jato-palmares-b-a-093.appspot.com",
-            messagingSenderId: "SEU_SENDER_ID_AQUI",
-            appId: "SEU_APP_ID_AQUI"
+            storageBucket: "lava-jato-palmares-b-a-093.firebasestorage.app",
+            messagingSenderId: "170054342057",
+            appId: "1:170054342057:web:f86f0794a66a4cae06a0b8",
+            measurementId: "G-4SDYN56CNQ"
         };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        const adminEmail = "lavajotapalmares375@gmail.com";
+        // E-mail oficial corrigido
+        const adminEmail = "lavajatopalmares375@gmail.com";
+        
         const actionCodeSettings = {
-            url: 'https://ccn-3-7-5.github.io/Lava-jato-palmares-B-A-093/admin.html', // Link do seu site
+            url: 'https://ccn-3-7-5.github.io/Lava-jato-palmares-B-A-093/admin.html',
             handleCodeInApp: true,
         };
 
-        // Função para enviar o link
         window.enviarLink = function() {
-            const email = document.getElementById('emailInput').value;
+            const email = document.getElementById('emailInput').value.trim().toLowerCase();
             if (email !== adminEmail) {
                 document.getElementById('message').innerText = "Acesso negado. Este e-mail não é de administrador.";
                 return;
@@ -72,7 +73,6 @@
                 });
         };
 
-        // Verifica se o usuário voltou clicando no link do e-mail
         if (isSignInWithEmailLink(auth, window.location.href)) {
             let email = window.localStorage.getItem('emailForSignIn');
             if (!email) {
