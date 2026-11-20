@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,145 +7,59 @@
     <title>Painel Administrativo - Lava-Jato Palmares</title>
 
     <style>
-        /* =====================================================================
-           DESIGN TOKENS & RESET GLOBAL
-           Paleta pensada para alta legibilidade no celular e desktop,
-           com destaques em azul marinho/royal, verde de status e amarelo de alerta.
-           ===================================================================== */
-        :root {
-            --bg-page: #eef2f7;
-            --bg-card: #ffffff;
-            --bg-soft: #f8fafc;
-            --primary: #075bb5;
-            --primary-dark: #054284;
-            --primary-light: #e6f0fc;
-            --accent-amber: #f59e0b;
-            --accent-amber-soft: #fffbeb;
-            --success: #15803d;
-            --success-soft: #dcfce7;
-            --danger: #b91c1c;
-            --danger-soft: #fee2e2;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --border: #cbd5e1;
-            --radius-lg: 14px;
-            --radius-md: 10px;
-            --radius-sm: 7px;
-            --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-        }
-
         * {
             box-sizing: border-box;
         }
 
         body {
-            font-family: "Segoe UI", Arial, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             min-height: 100vh;
-            background: var(--bg-page);
-            color: var(--text-main);
-            line-height: 1.45;
+            background: #f4f4f9;
+            color: #222;
         }
 
         .container {
-            width: min(100% - 24px, 880px);
-            margin: 24px auto 48px;
-            padding: 24px;
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-        }
-
-        h1, h2, h3, h4 {
-            margin-top: 0;
-            color: var(--text-main);
-        }
-
-        /* =====================================================================
-           ÁREA DE LOGIN ADMINISTRATIVO (MANTIDA E REFINADA)
-           ===================================================================== */
-        #loginArea {
-            max-width: 440px;
+            width: min(100% - 24px, 760px);
             margin: 32px auto;
+            padding: 24px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        #loginArea {
+            max-width: 420px;
+            margin: 40px auto;
             text-align: center;
         }
 
-        .badge-marca {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        input, select, textarea {
+        input {
             width: 100%;
-            padding: 11px 13px;
-            margin: 6px 0 12px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            font-size: 15px;
-            font-family: inherit;
-            background: #fff;
-            color: var(--text-main);
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 1px;
+            padding: 13px;
+            margin: 12px 0;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 16px;
         }
 
         button {
-            padding: 11px 16px;
+            padding: 13px 16px;
             border: 0;
-            border-radius: var(--radius-sm);
-            background: var(--primary);
-            color: #fff;
-            font-size: 15px;
-            font-weight: 700;
+            border-radius: 6px;
+            background: #075bb5;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            transition: transform 0.12s ease, background-color 0.2s ease, opacity 0.2s ease;
         }
 
         button:hover {
-            background: var(--primary-dark);
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        button.btn-secundario {
-            background: #e2e8f0;
-            color: var(--text-main);
-        }
-
-        button.btn-secundario:hover {
-            background: #cbd5e1;
-        }
-
-        button.btn-sucesso {
-            background: var(--success);
-        }
-
-        button.btn-sucesso:hover {
-            background: #166534;
-        }
-
-        button.btn-perigo {
-            background: var(--danger);
-        }
-
-        button.btn-perigo:hover {
-            background: #991b1b;
-        }
-
-        button.btn-pequeno {
-            padding: 7px 11px;
-            font-size: 13px;
+            background: #06488e;
         }
 
         #loginButton {
@@ -154,304 +69,53 @@
         #message {
             min-height: 24px;
             margin-top: 14px;
-            color: var(--text-muted);
-            font-weight: 600;
+            color: #444;
             overflow-wrap: anywhere;
         }
 
-        /* =====================================================================
-           PAINEL PRINCIPAL & BARRA DE 4 ABAS
-           ===================================================================== */
         #painel {
             display: none;
         }
 
         .cabecalho-painel {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #ddd;
         }
 
         .cabecalho-painel p {
-            margin: 4px 0 0;
-            color: var(--text-muted);
-            font-size: 14px;
+            margin-bottom: 0;
+            color: #555;
         }
 
-        /* Barra das 4 abas principais */
-        .barra-abas {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 10px;
-            margin-top: 18px;
-        }
-
-        .aba-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            min-height: 64px;
-            padding: 10px 8px;
-            border: 2px solid var(--primary);
-            border-radius: var(--radius-md);
-            background: #fff;
-            color: var(--primary);
-            font-size: 13px;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .aba-btn:hover {
-            background: var(--primary-light);
-            color: var(--primary-dark);
-        }
-
-        .aba-btn.ativa {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(7, 91, 181, 0.25);
-        }
-
-        .aba-direcao {
-            font-size: 11px;
-            opacity: 0.82;
-            font-weight: 600;
-        }
-
-        /* =====================================================================
-           VISÃO RÁPIDA NA TELA INICIAL (AGENDAMENTOS + BANNER + MENSALISTAS)
-           ===================================================================== */
-        .secao-resumo {
-            margin-top: 20px;
-            padding: 16px;
-            border-radius: var(--radius-md);
-            background: var(--bg-soft);
-            border: 1px solid #e2e8f0;
-        }
-
-        .banner-divisor {
-            margin: 18px 0;
-            padding: 16px 18px;
-            border-radius: var(--radius-md);
-            background: linear-gradient(120deg, #075bb5 0%, #0b3c75 100%);
-            color: #fff;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .banner-divisor strong {
-            display: block;
-            font-size: 16px;
-            letter-spacing: 0.2px;
-        }
-
-        .banner-divisor span {
-            font-size: 13px;
-            color: #dbeafe;
-        }
-
-        /* =====================================================================
-           ANIMAÇÕES DAS 4 ABAS (CIMA, ESQUERDA, DIREITA, BAIXO)
-           Cada aba desliza a partir da direção correspondente ao abrir.
-           ===================================================================== */
-        .conteudo-aba {
-            display: none;
-            margin-top: 22px;
-            padding: 20px;
-            border-radius: var(--radius-md);
-            border: 1px solid #e2e8f0;
-            background: #fff;
-        }
-
-        .conteudo-aba.ativa {
-            display: block;
-        }
-
-        .conteudo-aba.anim-cima.ativa {
-            animation: entrarDeCima 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .conteudo-aba.anim-baixo.ativa {
-            animation: entrarDeBaixo 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .conteudo-aba.anim-esquerda.ativa {
-            animation: entrarDaEsquerda 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .conteudo-aba.anim-direita.ativa {
-            animation: entrarDaDireita 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        @keyframes entrarDeCima {
-            from {
-                opacity: 0;
-                transform: translateY(-28px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes entrarDeBaixo {
-            from {
-                opacity: 0;
-                transform: translateY(28px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes entrarDaEsquerda {
-            from {
-                opacity: 0;
-                transform: translateX(-28px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes entrarDaDireita {
-            from {
-                opacity: 0;
-                transform: translateX(28px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* =====================================================================
-           CARDS, FILTROS, TAGS E AÇÕES
-           ===================================================================== */
-        .barra-filtros {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .barra-filtros input,
-        .barra-filtros select {
-            margin: 0;
-        }
-
-        .lista-cards {
-            display: grid;
-            gap: 12px;
-        }
-
-        .card-item {
-            padding: 14px;
-            border: 1px solid #e2e8f0;
-            border-radius: var(--radius-md);
-            background: var(--bg-soft);
-        }
-
-        .card-topo {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .tag-status {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 700;
-            background: var(--primary-light);
-            color: var(--primary-dark);
-        }
-
-        .tag-pago {
-            background: var(--success-soft);
-            color: var(--success);
-        }
-
-        .tag-pendente {
-            background: var(--danger-soft);
-            color: var(--danger);
-        }
-
-        .acoes-card {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .foto-vistoria {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: var(--radius-sm);
-            background: #fff;
-            border: 1px dashed #94a3b8;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .grade-2-col {
+        .grade-botoes {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
-            margin-top: 14px;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .grade-botoes button {
+            min-height: 62px;
+            background: #075bb5;
         }
 
         .aviso {
-            margin-top: 18px;
-            padding: 13px 15px;
-            border-radius: var(--radius-sm);
-            background: var(--accent-amber-soft);
-            color: #78350f;
-            border: 1px solid #fde68a;
-            font-size: 14px;
-        }
-
-        .feedback-acao {
-            margin-top: 12px;
-            padding: 10px 12px;
-            border-radius: var(--radius-sm);
-            background: var(--success-soft);
-            color: var(--success);
-            font-size: 14px;
-            font-weight: 600;
-            display: none;
-        }
-
-        @media (max-width: 720px) {
-            .barra-abas {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .barra-filtros,
-            .grade-2-col {
-                grid-template-columns: 1fr;
-            }
+            margin-top: 20px;
+            padding: 13px;
+            border-radius: 6px;
+            background: #fff3cd;
+            color: #664d03;
+            line-height: 1.5;
         }
 
         @media (max-width: 520px) {
             .container {
-                margin: 12px auto 32px;
-                padding: 16px;
+                margin: 16px auto;
+                padding: 20px;
+            }
+
+            .grade-botoes {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -459,11 +123,7 @@
 
 <body>
     <main class="container">
-        <!-- =================================================================
-             TELA DE LOGIN POR LINK MÁGICO (FIREBASE AUTH)
-             ================================================================= -->
         <section id="loginArea">
-            <span class="badge-marca">LAVA-JATO PALMARES • BR-093</span>
             <h1>Acesso restrito</h1>
             <p>Digite o e-mail de administrador para receber o link de acesso.</p>
 
@@ -481,228 +141,23 @@
             <div id="message" role="status" aria-live="polite"></div>
         </section>
 
-        <!-- =================================================================
-             PAINEL ADMINISTRATIVO PRINCIPAL
-             ================================================================= -->
         <section id="painel">
-            <header class="cabecalho-painel">
-                <div>
-                    <h1>Painel administrativo</h1>
-                    <p id="statusAdminTexto">Acesso liberado • Lava-Jato Palmares</p>
-                </div>
-                <button type="button" class="btn-secundario btn-pequeno" onclick="sairDoPainel()">
-                    Sair
-                </button>
-            </header>
-
-            <!-- Barra com as 4 abas animadas (Cima, Esquerda, Direita, Baixo) -->
-            <nav class="barra-abas" aria-label="Áreas administrativas">
-                <button type="button" id="btn-aba-agendamentos" class="aba-btn ativa" onclick="abrirAba('agendamentos', 'cima')">
-                    <span>Agendamentos</span>
-                    <span class="aba-direcao">▲ Vem de cima</span>
-                </button>
-                <button type="button" id="btn-aba-mensalistas" class="aba-btn" onclick="abrirAba('mensalistas', 'esquerda')">
-                    <span>Mensalistas &amp; Veículos</span>
-                    <span class="aba-direcao">◄ Vem da esquerda</span>
-                </button>
-                <button type="button" id="btn-aba-lavagens" class="aba-btn" onclick="abrirAba('lavagens', 'direita')">
-                    <span>Lavagens &amp; Caixa</span>
-                    <span class="aba-direcao">► Vem da direita</span>
-                </button>
-                <button type="button" id="btn-aba-planos" class="aba-btn" onclick="abrirAba('planos', 'baixo')">
-                    <span>Planos, Preços &amp; Acesso</span>
-                    <span class="aba-direcao">▼ Vem de baixo</span>
-                </button>
-            </nav>
-
-            <!-- Mapa rápido de atalhos: parte de cima (agenda/serviços), banner no meio e mensalistas embaixo -->
-            <div class="secao-resumo" id="mapaAtalhosPainel">
-                <div class="card-topo">
-                    <h3>Atalhos de Agendamentos &amp; Serviços (Parte Superior)</h3>
-                    <span class="tag-status">Ordem do mapa</span>
-                </div>
-                <div class="acoes-card">
-                    <button type="button" class="btn-pequeno" onclick="abrirAba('agendamentos', 'cima')">Serviços básicos &amp; Agenda</button>
-                    <button type="button" class="btn-pequeno" onclick="abrirAba('agendamentos', 'cima')">Serviços essenciais</button>
-                    <button type="button" class="btn-pequeno" onclick="abrirAba('agendamentos', 'cima')">Estética automotiva</button>
-                    <button type="button" class="btn-pequeno" onclick="abrirAba('agendamentos', 'cima')">Serviço Premium</button>
-                    <button type="button" class="btn-secundario btn-pequeno" onclick="abrirAba('planos', 'baixo')">Central de informações &amp; Menu</button>
-                    <button type="button" class="btn-secundario btn-pequeno" onclick="abrirAba('planos', 'baixo')">Sala VIP Premium &amp; Planos</button>
-                </div>
-
-                <!-- Banner divisor central: separa a operação superior dos botões de mensalistas abaixo -->
-                <div class="banner-divisor" id="bannerDivisorMensalistas">
-                    <div>
-                        <strong>Lava-Jato Palmares • Divisor: Agendamentos em Cima / Mensalistas em Baixo</strong>
-                        <span>Abaixo deste banner ficam separados os comandos dedicados aos mensalistas.</span>
-                    </div>
-                    <span class="tag-status">Divisor Central</span>
-                </div>
-
-                <div>
-                    <h4>Atalhos de Mensalistas (Abaixo do Banner)</h4>
-                    <div class="acoes-card">
-                        <button type="button" class="btn-sucesso btn-pequeno" onclick="abrirAba('mensalistas', 'esquerda')">
-                            Clientes mensalistas
-                        </button>
-                        <button type="button" class="btn-sucesso btn-pequeno" onclick="abrirAba('mensalistas', 'esquerda')">
-                            Veículos &amp; Fotos (Painel CL)
-                        </button>
-                    </div>
-                </div>
+            <div class="cabecalho-painel">
+                <h1>Painel administrativo</h1>
+                <p>Acesso liberado. Escolha uma área:</p>
             </div>
 
-            <!-- ===============================================================
-                 ABA 1: AGENDAMENTOS (DESLIZA DE CIMA)
-                 Contém visão rápida superior, banner divisor e gestão completa.
-                 =============================================================== -->
-            <section id="aba-agendamentos" class="conteudo-aba anim-cima ativa">
-                <div class="secao-resumo">
-                    <div class="card-topo">
-                        <h3>Agendamentos do dia (Visão Superior)</h3>
-                        <span class="tag-status" id="contadorAgendamentos">0 registros</span>
-                    </div>
-
-                    <div class="barra-filtros">
-                        <input
-                            type="text"
-                            id="filtroBuscaAgendamento"
-                            placeholder="Buscar cliente ou placa..."
-                            oninput="renderizarAgendamentos()"
-                        >
-                        <select id="filtroStatusAgendamento" onchange="renderizarAgendamentos()">
-                            <option value="todos">Todos os status</option>
-                            <option value="Aguardando">Aguardando</option>
-                            <option value="Confirmado">Confirmado</option>
-                            <option value="Em atendimento">Em atendimento</option>
-                            <option value="Concluído">Concluído</option>
-                            <option value="Cancelado">Cancelado</option>
-                        </select>
-                        <input
-                            type="date"
-                            id="filtroDataAgendamento"
-                            onchange="renderizarAgendamentos()"
-                        >
-                    </div>
-
-                    <div id="listaAgendamentos" class="lista-cards"></div>
-                </div>
-
-                <!-- Banner divisor no meio separando operação de agenda e gestão de horários -->
-                <div class="banner-divisor">
-                    <div>
-                        <strong>Lava-Jato Palmares • Controle de Horários &amp; Disponibilidade</strong>
-                        <span>Bloqueie ou libere horários do dia e confira alertas de novos agendamentos.</span>
-                    </div>
-                    <button type="button" class="btn-sucesso btn-pequeno" onclick="abrirAba('mensalistas', 'esquerda')">
-                        Ver Mensalistas ↓
-                    </button>
-                </div>
-
-                <!-- Bloqueio rápido de horário -->
-                <div class="secao-resumo">
-                    <h4>Bloquear ou liberar horário</h4>
-                    <div class="grade-2-col">
-                        <div>
-                            <label for="dataBloqueio">Data</label>
-                            <input type="date" id="dataBloqueio">
-                        </div>
-                        <div>
-                            <label for="horaBloqueio">Horário</label>
-                            <input type="time" id="horaBloqueio" value="14:00">
-                        </div>
-                    </div>
-                    <label for="motivoBloqueio">Motivo do bloqueio (opcional)</label>
-                    <input type="text" id="motivoBloqueio" placeholder="Ex.: Manutenção hidráulica ou evento">
-                    <button type="button" onclick="registrarBloqueioHorario()">Salvar bloqueio de horário</button>
-                    <div id="listaBloqueios" class="lista-cards" style="margin-top: 12px;"></div>
-                </div>
-            </section>
-
-            <!-- ===============================================================
-                 ABA 2: MENSALISTAS & VEÍCULOS (DESLIZA DA ESQUERDA)
-                 Consulta, vistoria de fotos enviadas pelo cliente, correção e acesso.
-                 =============================================================== -->
-            <section id="aba-mensalistas" class="conteudo-aba anim-esquerda">
-                <div class="card-topo">
-                    <div>
-                        <h2>Mensalistas &amp; Vistoria de Veículos</h2>
-                        <p style="margin: 0; color: var(--text-muted); font-size: 14px;">
-                            Câmera e envio de fotos ficam no app do cliente; aqui você confere fotos, corrige placa/modelo e controla o acesso.
-                        </p>
-                    </div>
-                </div>
-
-                <div style="margin-top: 14px;">
-                    <input
-                        type="text"
-                        id="buscaMensalista"
-                        placeholder="Filtrar mensalista por nome, telefone ou placa..."
-                        oninput="renderizarMensalistas()"
-                    >
-                </div>
-
-                <div id="listaMensalistas" class="lista-cards"></div>
-            </section>
-
-            <!-- ===============================================================
-                 ABA 3: LAVAGENS & CAIXA (DESLIZA DA DIREITA)
-                 Registro rápido de lavagens e controle de pagamentos (Pago/Pendente).
-                 =============================================================== -->
-            <section id="aba-lavagens" class="conteudo-aba anim-direita">
-                <h2>Lavagens &amp; Pagamentos</h2>
-
-                <div class="secao-resumo">
-                    <h4>Registrar nova lavagem</h4>
-                    <div class="grade-2-col">
-                        <div>
-                            <label for="lavagemCliente">Cliente / Placa</label>
-                            <input type="text" id="lavagemCliente" placeholder="Ex.: Carlos Eduardo (ABC-1D23)">
-                        </div>
-                        <div>
-                            <label for="lavagemServico">Serviço executado</label>
-                            <input type="text" id="lavagemServico" placeholder="Ex.: Lavagem completa + cera">
-                        </div>
-                        <div>
-                            <label for="lavagemValor">Valor (R$)</label>
-                            <input type="number" id="lavagemValor" step="0.01" placeholder="65.00">
-                        </div>
-                        <div>
-                            <label for="lavagemPagamento">Situação do pagamento</label>
-                            <select id="lavagemPagamento">
-                                <option value="Pago">Pago</option>
-                                <option value="Pendente">Pendente</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-sucesso" onclick="adicionarLavagem()">
-                        Registrar lavagem e duplicar modelo se precisar
-                    </button>
-                </div>
-
-                <h3 style="margin-top: 20px;">Histórico de lavagens e caixa</h3>
-                <div id="listaLavagens" class="lista-cards"></div>
-            </section>
-
-            <!-- ===============================================================
-                 ABA 4: PLANOS, PREÇOS & ACESSO (DESLIZA DE BAIXO)
-                 Edição de valores/planos, regras de segurança e histórico de alterações.
-                 =============================================================== -->
-            <section id="aba-planos" class="conteudo-aba anim-baixo">
-                <h2>Planos, Preços &amp; Histórico Administrativo</h2>
-
-                <div id="listaPlanos" class="lista-cards"></div>
-
-                <div class="secao-resumo" style="margin-top: 20px;">
-                    <h3>Histórico de alterações do painel</h3>
-                    <div id="listaHistorico" class="lista-cards"></div>
-                </div>
-            </section>
-
-            <div id="feedbackPainel" class="feedback-acao" role="status" aria-live="polite"></div>
+            <div class="grade-botoes">
+                <button type="button">Agendamentos</button>
+                <button type="button">Clientes mensalistas</button>
+                <button type="button">Veículos</button>
+                <button type="button">Lavagens e histórico</button>
+                <button type="button">Pagamentos</button>
+                <button type="button">Planos e preços</button>
+            </div>
 
             <div class="aviso">
-                <strong>Estrutura de demonstração ativa:</strong> Os dados exibidos nas 4 abas são exemplos locais iniciais para você validar o visual e as animações antes de conectar às coleções do Firebase e ao aplicativo no Kodular.
+                Estas áreas são apenas a estrutura inicial. Ainda não estão conectadas a dados.
             </div>
         </section>
     </main>
@@ -717,9 +172,6 @@
             signOut
         } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        // =====================================================================
-        // CONFIGURAÇÃO DO FIREBASE & AUTENTICAÇÃO DO ADMINISTRADOR
-        // =====================================================================
         const firebaseConfig = {
             apiKey: "AIzaSyDOnB_h4X_2qWjiw5fSuK8w0i8e_NAXByY",
             authDomain: "lava-jato-palmares-b-a-093.firebaseapp.com",
@@ -798,450 +250,15 @@
                     return;
                 }
 
-                exibirPainelAdministrativo(resultado.user.email);
+                document.getElementById("loginArea").style.display = "none";
+                document.getElementById("painel").style.display = "block";
+
                 window.history.replaceState({}, document.title, window.location.pathname);
             } catch (error) {
                 message.textContent = "Erro ao entrar: " + error.message;
             }
         }
 
-        function exibirPainelAdministrativo(emailLogado) {
-            document.getElementById("loginArea").style.display = "none";
-            document.getElementById("painel").style.display = "block";
-            document.getElementById("statusAdminTexto").textContent =
-                `Acesso liberado • ${emailLogado || adminEmail}`;
-            renderizarTudo();
-        }
-
-        window.sairDoPainel = async function() {
-            try {
-                await signOut(auth);
-            } catch (_) {
-                // Ignora caso o usuário esteja apenas testando a visualização local
-            }
-            document.getElementById("painel").style.display = "none";
-            document.getElementById("loginArea").style.display = "block";
-            message.textContent = "Sessão encerrada.";
-        };
-
-        // =====================================================================
-        // ESTADO INICIAL DE EXEMPLO (PRONTO PARA CONECTAR AO FIREBASE)
-        // =====================================================================
-        const estadoPainel = {
-            agendamentos: [
-                {
-                    id: 1,
-                    cliente: "Marcos Almeida",
-                    telefone: "(66) 99901-1122",
-                    veiculo: "Fiat Strada • QWE-4R56",
-                    servico: "Lavagem Essencial + Caixa de Roda",
-                    valor: "R$ 55,00",
-                    data: "2026-11-19",
-                    hora: "09:30",
-                    status: "Confirmado",
-                    observacao: "Bastante barro na caixa de roda e poeira no painel."
-                },
-                {
-                    id: 2,
-                    cliente: "Fernanda Souza",
-                    telefone: "(66) 99902-3344",
-                    veiculo: "Honda HR-V • JKL-8M90",
-                    servico: "Estética Automotiva + Higienização",
-                    valor: "R$ 140,00",
-                    data: "2026-11-19",
-                    hora: "11:00",
-                    status: "Aguardando",
-                    observacao: "Mancha leve no banco traseiro e areia no tapete."
-                }
-            ],
-            bloqueios: [
-                { id: 1, data: "2026-11-20", hora: "16:30", motivo: "Limpeza do reservatório e folga" }
-            ],
-            mensalistas: [
-                {
-                    id: 1,
-                    nome: "Rafael Tavares",
-                    telefone: "(66) 99811-5566",
-                    plano: "Mensalista Prata (4 lavagens/mês)",
-                    veiculo: "Toyota Corolla",
-                    placa: "BRA-2E19",
-                    fotoStatus: "Foto frontal e lateral enviadas pelo app (aguardando conferência)",
-                    edicaoLiberada: true
-                },
-                {
-                    id: 2,
-                    nome: "Patrícia Lima",
-                    telefone: "(66) 99822-7788",
-                    plano: "Mensalista Ouro (Lavagens ilimitadas)",
-                    veiculo: "Jeep Compass",
-                    placa: "PAL-0937",
-                    fotoStatus: "Fotos conferidas e aprovadas na vistoria",
-                    edicaoLiberada: false
-                }
-            ],
-            lavagens: [
-                {
-                    id: 1,
-                    cliente: "Rafael Tavares (BRA-2E19)",
-                    servico: "Lavagem completa + pretinho",
-                    valor: "60.00",
-                    pagamento: "Pago",
-                    dataHora: "19/11/2026 08:20"
-                }
-            ],
-            planos: [
-                { id: 1, nome: "Lavagem Básica", preco: "R$ 40,00", descricao: "Lavagem externa + aspiração rápida", ativo: true },
-                { id: 2, nome: "Lavagem Essencial", preco: "R$ 55,00", descricao: "Completa interna/externa + pretinho", ativo: true },
-                { id: 3, nome: "Estética Automotiva", preco: "R$ 140,00", descricao: "Cera técnica, descontaminação e detalhes", ativo: true },
-                { id: 4, nome: "Plano Mensalista", preco: "R$ 190,00", descricao: "Pacote mensal para clientes recorrentes", ativo: true }
-            ],
-            historico: [
-                "19/11/2026 — Painel estruturado com as 4 abas animadas (Lava-Jato Palmares)."
-            ]
-        };
-
-        // =====================================================================
-        // CONTROLE DE ABAS ANIMADAS (CIMA, ESQUERDA, DIREITA, BAIXO)
-        // =====================================================================
-        window.abrirAba = function(nomeAba, direcao) {
-            const todasSecoes = document.querySelectorAll(".conteudo-aba");
-            todasSecoes.forEach((secao) => {
-                secao.classList.remove("ativa", "anim-cima", "anim-baixo", "anim-esquerda", "anim-direita");
-            });
-
-            const todosBotoes = document.querySelectorAll(".aba-btn");
-            todosBotoes.forEach((btn) => btn.classList.remove("ativa"));
-
-            const alvo = document.getElementById(`aba-${nomeAba}`);
-            const botaoAlvo = document.getElementById(`btn-aba-${nomeAba}`);
-
-            if (alvo) {
-                // Força reflow para garantir que a animação direcional rode sempre que abrir
-                void alvo.offsetWidth;
-                alvo.classList.add(`anim-${direcao}`, "ativa");
-            }
-            if (botaoAlvo) {
-                botaoAlvo.classList.add("ativa");
-            }
-        };
-
-        function notificarAcao(texto) {
-            const box = document.getElementById("feedbackPainel");
-            box.textContent = texto;
-            box.style.display = "block";
-            estadoPainel.historico.unshift(`${new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })} — ${texto}`);
-            renderizarHistorico();
-        }
-
-        // =====================================================================
-        // RENDERIZAÇÃO E AÇÕES — ABA 1: AGENDAMENTOS
-        // =====================================================================
-        window.renderizarAgendamentos = function() {
-            const busca = (document.getElementById("filtroBuscaAgendamento")?.value || "").toLowerCase().trim();
-            const statusFiltro = document.getElementById("filtroStatusAgendamento")?.value || "todos";
-            const dataFiltro = document.getElementById("filtroDataAgendamento")?.value || "";
-
-            const filtrados = estadoPainel.agendamentos.filter((item) => {
-                const matchTexto =
-                    !busca ||
-                    item.cliente.toLowerCase().includes(busca) ||
-                    item.veiculo.toLowerCase().includes(busca) ||
-                    item.servico.toLowerCase().includes(busca);
-                const matchStatus = statusFiltro === "todos" || item.status === statusFiltro;
-                const matchData = !dataFiltro || item.data === dataFiltro;
-                return matchTexto && matchStatus && matchData;
-            });
-
-            const contador = document.getElementById("contadorAgendamentos");
-            if (contador) {
-                contador.textContent = `${filtrados.length} agendamento(s)`;
-            }
-
-            const lista = document.getElementById("listaAgendamentos");
-            if (!lista) return;
-
-            if (filtrados.length === 0) {
-                lista.innerHTML = `<div class="card-item">Nenhum agendamento encontrado com esses filtros.</div>`;
-                return;
-            }
-
-            lista.innerHTML = filtrados.map((item) => `
-                <article class="card-item">
-                    <div class="card-topo">
-                        <strong>${item.hora} • ${item.cliente}</strong>
-                        <span class="tag-status">${item.status}</span>
-                    </div>
-                    <div><strong>Veículo:</strong> ${item.veiculo} • <strong>WhatsApp:</strong> ${item.telefone}</div>
-                    <div><strong>Serviço:</strong> ${item.servico} (${item.valor}) • <strong>Data:</strong> ${item.data}</div>
-                    <div style="margin-top: 6px; color: var(--text-muted);"><strong>Observação da sujeira:</strong> ${item.observacao}</div>
-                    <div class="acoes-card">
-                        <button type="button" class="btn-sucesso btn-pequeno" onclick="atualizarStatusAgendamento(${item.id}, 'Confirmado')">Confirmar</button>
-                        <button type="button" class="btn-pequeno" onclick="atualizarStatusAgendamento(${item.id}, 'Em atendimento')">Em atendimento</button>
-                        <button type="button" class="btn-pequeno" onclick="atualizarStatusAgendamento(${item.id}, 'Concluído')">Concluir</button>
-                        <button type="button" class="btn-perigo btn-pequeno" onclick="atualizarStatusAgendamento(${item.id}, 'Cancelado')">Cancelar</button>
-                    </div>
-                </article>
-            `).join("");
-        };
-
-        window.atualizarStatusAgendamento = function(id, novoStatus) {
-            const ag = estadoPainel.agendamentos.find((item) => item.id === id);
-            if (!ag) return;
-            ag.status = novoStatus;
-            renderizarAgendamentos();
-            notificarAcao(`Agendamento de ${ag.cliente} alterado para "${novoStatus}".`);
-        };
-
-        window.registrarBloqueioHorario = function() {
-            const data = document.getElementById("dataBloqueio").value || "2026-11-20";
-            const hora = document.getElementById("horaBloqueio").value || "14:00";
-            const motivo = document.getElementById("motivoBloqueio").value.trim() || "Horário bloqueado pelo administrador";
-
-            estadoPainel.bloqueios.unshift({
-                id: Date.now(),
-                data,
-                hora,
-                motivo
-            });
-            document.getElementById("motivoBloqueio").value = "";
-            renderizarBloqueios();
-            notificarAcao(`Horário bloqueado em ${data} às ${hora}.`);
-        };
-
-        window.removerBloqueio = function(id) {
-            estadoPainel.bloqueios = estadoPainel.bloqueios.filter((b) => b.id !== id);
-            renderizarBloqueios();
-            notificarAcao("Bloqueio de horário removido.");
-        };
-
-        function renderizarBloqueios() {
-            const lista = document.getElementById("listaBloqueios");
-            if (!lista) return;
-
-            if (estadoPainel.bloqueios.length === 0) {
-                lista.innerHTML = `<div class="card-item">Nenhum horário bloqueado no momento.</div>`;
-                return;
-            }
-
-            lista.innerHTML = estadoPainel.bloqueios.map((b) => `
-                <div class="card-item">
-                    <div class="card-topo">
-                        <strong>Bloqueado: ${b.data} às ${b.hora}</strong>
-                        <button type="button" class="btn-secundario btn-pequeno" onclick="removerBloqueio(${b.id})">Liberar</button>
-                    </div>
-                    <div style="color: var(--text-muted);">${b.motivo}</div>
-                </div>
-            `).join("");
-        }
-
-        // =====================================================================
-        // RENDERIZAÇÃO E AÇÕES — ABA 2: MENSALISTAS & VEÍCULOS
-        // =====================================================================
-        window.renderizarMensalistas = function() {
-            const busca = (document.getElementById("buscaMensalista")?.value || "").toLowerCase().trim();
-            const filtrados = estadoPainel.mensalistas.filter((m) =>
-                !busca ||
-                m.nome.toLowerCase().includes(busca) ||
-                m.placa.toLowerCase().includes(busca) ||
-                m.veiculo.toLowerCase().includes(busca) ||
-                m.telefone.toLowerCase().includes(busca)
-            );
-
-            const lista = document.getElementById("listaMensalistas");
-            if (!lista) return;
-
-            lista.innerHTML = filtrados.map((m) => `
-                <article class="card-item">
-                    <div class="card-topo">
-                        <strong>${m.nome} • ${m.plano}</strong>
-                        <span class="tag-status">${m.edicaoLiberada ? "Edição liberada ao cliente" : "Edição restrita ao admin"}</span>
-                    </div>
-                    <div><strong>Telefone:</strong> ${m.telefone}</div>
-                    <div class="grade-2-col" style="margin-top: 8px;">
-                        <div>
-                            <label>Veículo (modelo)</label>
-                            <input type="text" id="modelo-${m.id}" value="${m.veiculo}">
-                        </div>
-                        <div>
-                            <label>Placa</label>
-                            <input type="text" id="placa-${m.id}" value="${m.placa}">
-                        </div>
-                    </div>
-                    <div class="foto-vistoria">
-                        <strong>Vistoria de fotos enviadas pelo cliente:</strong> ${m.fotoStatus}
-                    </div>
-                    <div class="acoes-card">
-                        <button type="button" class="btn-sucesso btn-pequeno" onclick="salvarDadosMensalista(${m.id})">Salvar correção do veículo</button>
-                        <button type="button" class="btn-pequeno" onclick="aprovarFotoMensalista(${m.id})">Marcar foto conferida</button>
-                        <button type="button" class="btn-secundario btn-pequeno" onclick="alternarAcessoCliente(${m.id})">
-                            ${m.edicaoLiberada ? "Restringir edição do cliente" : "Permitir cliente corrigir no app"}
-                        </button>
-                    </div>
-                </article>
-            `).join("");
-        };
-
-        window.salvarDadosMensalista = function(id) {
-            const m = estadoPainel.mensalistas.find((item) => item.id === id);
-            if (!m) return;
-            const novoModelo = document.getElementById(`modelo-${id}`).value.trim();
-            const novaPlaca = document.getElementById(`placa-${id}`).value.trim().toUpperCase();
-            if (novoModelo) m.veiculo = novoModelo;
-            if (novaPlaca) m.placa = novaPlaca;
-            renderizarMensalistas();
-            notificarAcao(`Dados do veículo de ${m.nome} atualizados (${m.veiculo} • ${m.placa}).`);
-        };
-
-        window.aprovarFotoMensalista = function(id) {
-            const m = estadoPainel.mensalistas.find((item) => item.id === id);
-            if (!m) return;
-            m.fotoStatus = "Fotos conferidas e aprovadas pelo administrador";
-            renderizarMensalistas();
-            notificarAcao(`Fotos do veículo ${m.placa} marcadas como conferidas.`);
-        };
-
-        window.alternarAcessoCliente = function(id) {
-            const m = estadoPainel.mensalistas.find((item) => item.id === id);
-            if (!m) return;
-            m.edicaoLiberada = !m.edicaoLiberada;
-            renderizarMensalistas();
-            notificarAcao(`Acesso de edição do cliente ${m.nome} ${m.edicaoLiberada ? "liberado" : "restringido"}.`);
-        };
-
-        // =====================================================================
-        // RENDERIZAÇÃO E AÇÕES — ABA 3: LAVAGENS & CAIXA
-        // =====================================================================
-        window.adicionarLavagem = function() {
-            const cliente = document.getElementById("lavagemCliente").value.trim() || "Cliente avulso";
-            const servico = document.getElementById("lavagemServico").value.trim() || "Lavagem completa";
-            const valor = document.getElementById("lavagemValor").value.trim() || "50.00";
-            const pagamento = document.getElementById("lavagemPagamento").value;
-
-            estadoPainel.lavagens.unshift({
-                id: Date.now(),
-                cliente,
-                servico,
-                valor,
-                pagamento,
-                dataHora: new Date().toLocaleString("pt-BR")
-            });
-
-            document.getElementById("lavagemCliente").value = "";
-            document.getElementById("lavagemServico").value = "";
-            document.getElementById("lavagemValor").value = "";
-
-            renderizarLavagens();
-            notificarAcao(`Lavagem registrada para ${cliente} (${pagamento}).`);
-        };
-
-        window.duplicarLavagem = function(id) {
-            const original = estadoPainel.lavagens.find((l) => l.id === id);
-            if (!original) return;
-            estadoPainel.lavagens.unshift({
-                ...original,
-                id: Date.now(),
-                dataHora: new Date().toLocaleString("pt-BR") + " (cópia)"
-            });
-            renderizarLavagens();
-            notificarAcao(`Registro de lavagem de ${original.cliente} duplicado.`);
-        };
-
-        window.alternarPagamentoLavagem = function(id) {
-            const item = estadoPainel.lavagens.find((l) => l.id === id);
-            if (!item) return;
-            item.pagamento = item.pagamento === "Pago" ? "Pendente" : "Pago";
-            renderizarLavagens();
-            notificarAcao(`Pagamento de ${item.cliente} marcado como ${item.pagamento}.`);
-        };
-
-        function renderizarLavagens() {
-            const lista = document.getElementById("listaLavagens");
-            if (!lista) return;
-
-            lista.innerHTML = estadoPainel.lavagens.map((l) => `
-                <article class="card-item">
-                    <div class="card-topo">
-                        <strong>${l.cliente} • R$ ${Number(l.valor || 0).toFixed(2).replace(".", ",")}</strong>
-                        <span class="tag-status ${l.pagamento === "Pago" ? "tag-pago" : "tag-pendente"}">${l.pagamento}</span>
-                    </div>
-                    <div><strong>Serviço:</strong> ${l.servico}</div>
-                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Registrado em: ${l.dataHora}</div>
-                    <div class="acoes-card">
-                        <button type="button" class="btn-pequeno" onclick="alternarPagamentoLavagem(${l.id})">Alternar Pago/Pendente</button>
-                        <button type="button" class="btn-secundario btn-pequeno" onclick="duplicarLavagem(${l.id})">Duplicar registro</button>
-                    </div>
-                </article>
-            `).join("");
-        }
-
-        // =====================================================================
-        // RENDERIZAÇÃO E AÇÕES — ABA 4: PLANOS, PREÇOS & HISTÓRICO
-        // =====================================================================
-        function renderizarPlanos() {
-            const lista = document.getElementById("listaPlanos");
-            if (!lista) return;
-
-            lista.innerHTML = estadoPainel.planos.map((p) => `
-                <article class="card-item">
-                    <div class="card-topo">
-                        <strong>${p.nome}</strong>
-                        <span class="tag-status">${p.ativo ? "Disponível" : "Pausado"}</span>
-                    </div>
-                    <div class="grade-2-col" style="margin-top: 8px;">
-                        <div>
-                            <label>Valor exibido</label>
-                            <input type="text" id="preco-plano-${p.id}" value="${p.preco}">
-                        </div>
-                        <div>
-                            <label>Descrição resumida</label>
-                            <input type="text" id="desc-plano-${p.id}" value="${p.descricao}">
-                        </div>
-                    </div>
-                    <div class="acoes-card">
-                        <button type="button" class="btn-sucesso btn-pequeno" onclick="salvarPlano(${p.id})">Salvar plano/preço</button>
-                        <button type="button" class="btn-secundario btn-pequeno" onclick="alternarStatusPlano(${p.id})">
-                            ${p.ativo ? "Pausar disponibilidade" : "Ativar disponibilidade"}
-                        </button>
-                    </div>
-                </article>
-            `).join("");
-        }
-
-        window.salvarPlano = function(id) {
-            const p = estadoPainel.planos.find((item) => item.id === id);
-            if (!p) return;
-            p.preco = document.getElementById(`preco-plano-${id}`).value.trim() || p.preco;
-            p.descricao = document.getElementById(`desc-plano-${id}`).value.trim() || p.descricao;
-            renderizarPlanos();
-            notificarAcao(`Plano "${p.nome}" atualizado para ${p.preco}.`);
-        };
-
-        window.alternarStatusPlano = function(id) {
-            const p = estadoPainel.planos.find((item) => item.id === id);
-            if (!p) return;
-            p.ativo = !p.ativo;
-            renderizarPlanos();
-            notificarAcao(`Disponibilidade do plano "${p.nome}" alterada para ${p.ativo ? "Disponível" : "Pausado"}.`);
-        };
-
-        function renderizarHistorico() {
-            const lista = document.getElementById("listaHistorico");
-            if (!lista) return;
-            lista.innerHTML = estadoPainel.historico
-                .map((linha) => `<div class="card-item" style="padding: 10px 12px; font-size: 13px;">${linha}</div>`)
-                .join("");
-        }
-
-        function renderizarTudo() {
-            renderizarAgendamentos();
-            renderizarBloqueios();
-            renderizarMensalistas();
-            renderizarLavagens();
-            renderizarPlanos();
-            renderizarHistorico();
-        }
-
-        // Inicia verificação do link mágico do Firebase ao carregar a página
         concluirLoginPorLink();
     </script>
 </body>
