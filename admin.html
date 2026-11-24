@@ -1,3 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Lava-Jato Palmares</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: #f4f4f9;
+            color: #222;
+        }
+
+        .container {
+            width: min(100% - 24px, 900px);
+            margin: 24px auto;
+            padding: 24px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 { margin-top: 0; }
+
+        #loginArea {
+            max-width: 420px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 12px 0;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 13px 16px;
+            border: 0;
+            border-radius: 6px;
+            background: #075bb5;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover { background: #06488e; }
+
+        #loginButton { width: 100%; }
+
+        #message {
+            min-height: 24px;
+            margin-top: 14px;
+            color: #444;
+            overflow-wrap: anywhere;
+        }
+
+        #painel { display: none; }
+
+        .cabecalho-painel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cabecalho-painel p {
+            margin-bottom: 0;
+            color: #555;
+        }
+
+        .botao-sair {
+            background: #555;
+            white-space: nowrap;
+        }
+
+        .grade-botoes {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .grade-botoes button { min-height: 62px; }
+
+        .secao {
+            display: none;
+            margin-top: 22px;
+        }
+
+        .secao.ativa { display: block; }
+
+        .botao-voltar {
+            margin-bottom: 18px;
+            background: #555;
+        }
+
+        .aviso {
+            margin-top: 20px;
+            padding: 13px;
+            border-radius: 6px;
+            background: #fff3cd;
+            color: #664d03;
+            line-height: 1.5;
+        }
+
+        .texto-ajuda { color: #555; }
+
+        @media (max-width: 520px) {
+            .container {
+                margin: 16px auto;
+                padding: 20px;
+            }
+
+            .grade-botoes { grid-template-columns: 1fr; }
+
+            .cabecalho-painel {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <section id="loginArea">
+            <h1>Acesso restrito</h1>
+            <p>Digite o e-mail de administrador para receber o link de acesso.</p>
+
+            <input
+                type="email"
+                id="emailInput"
+                placeholder="E-mail do administrador"
+                autocomplete="email"
+            >
+
+            <button type="button" id="loginButton">
+                Enviar link mágico
+            </button>
+
+            <div id="message" role="status" aria-live="polite"></div>
+        </section>
+
+        <section id="painel">
+            <div class="cabecalho-painel">
+                <div>
+                    <h1>Painel administrativo</h1>
+                    <p>Escolha uma área para abrir.</p>
+                </div>
+                <button type="button" class="botao-sair" id="sairButton">
+                    Sair
+                </button>
+            </div>
+
+            <section id="inicio">
+                <div class="grade-botoes">
+                    <button type="button" data-area="agendamentos">Agendamentos</button>
+                    <button type="button" data-area="mensalistas">Clientes mensalistas</button>
+                    <button type="button" data-area="veiculos">Veículos</button>
+                    <button type="button" data-area="lavagens">Lavagens e histórico</button>
+                    <button type="button" data-area="pagamentos">Pagamentos</button>
+                    <button type="button" data-area="planos">Planos e preços</button>
+                </div>
+
+                <div class="aviso">
+                    As áreas estão organizadas, mas ainda serão conectadas aos dados
+                    e às funções aos poucos.
+                </div>
+            </section>
+
+            <section class="secao" id="area-agendamentos">
+                <button type="button" class="botao-voltar">← Voltar às áreas</button>
+                <h2>Agendamentos</h2>
+                <p class="texto-ajuda">Esta área está em preparação. Aqui ficará a gestão dos agendamentos.</p>
+            </section>
+
+            <section class="secao" id="area-mensalistas">
+                <button type="button" class="botao-voltar">← Voltar às áreas</button>
+                <h2>Clientes mensalistas</h2>
+                <input type="search" id="buscaMensalistas" placeholder="Buscar cliente mensalista">
+                <p class="texto-ajuda">Esta área está em preparação. A busca será ligada à lista de clientes quando os dados forem conectados.</p>
+            </section>
+
+            <section class="secao" id="area-veiculos">
+                <button type="button" class="botao-voltar">← Voltar às áreas</button>
+                <h2>Veículos</h2>
+                <p class="texto-ajuda">Esta área está em preparação. Aqui ficará a consulta e gestão dos veículos.</p>
+            </section>
+
+            <section class="secao" id="area-lavagens">
+                <button type="button" class="botao-voltar">← Voltar às áreas</button>
+                <h2>Lavagens e histórico</h2>
+                <p class="texto-ajuda">Esta área está em preparação. Aqui ficará o histórico dos serviços realizados.</p>
+            </section>
+
+            <section class="secao" id="area-pagamentos">
+                <button type="button" class="botao-voltar">← Voltar às áreas</button>
+                <h2>Pagamentos</h2>
+                <p class="texto-ajuda">Esta área está em preparação. Aqui ficarão os registros de pagamentos.</p>
+            </section>
+
+            <section class="secao" id="area-planos">
+                <button type="button" class="botao-voltar">← Voltar às áreas</button>
+                <h2>Planos e preços</h2>
+                <p class="texto-ajuda">Esta área está em preparação. Aqui ficará a gestão de planos e preços.</p>
+            </section>
+        </section>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import {
+            getAuth,
+            sendSignInLinkToEmail,
+            isSignInWithEmailLink,
+            signInWithEmailLink,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDOnB_h4X_2qWjiw5fSuK8w0i8e_NAXByY",
+            authDomain: "lava-jato-palmares-b-a-093.firebaseapp.com",
+            projectId: "lava-jato-palmares-b-a-093",
+            storageBucket: "lava-jato-palmares-b-a-093.firebasestorage.app",
+            messagingSenderId: "170054342057",
+            appId: "1:170054342057:web:f86f0794a66a4cae06a0b8",
+            measurementId: "G-4SDYN56CNQ"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const adminEmail = "lavajatopalmares375@gmail.com";
+
+        const actionCodeSettings = {
+            url: "https://ccn-3-7-5.github.io/Lava-jato-palmares-B-A-093/admin.html",
+            handleCodeInApp: true
+        };
+
+        const loginArea = document.getElementById("loginArea");
+        const painel = document.getElementById("painel");
+        const message = document.getElementById("message");
+
+        function mostrarPainel() {
+            loginArea.style.display = "none";
+            painel.style.display = "block";
+            mostrarInicio();
+        }
         function mostrarInicio() {
             document.getElementById("inicio").style.display = "block";
             document.querySelectorAll(".secao").forEach(function (secao) {
