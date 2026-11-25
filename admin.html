@@ -81,9 +81,15 @@
             color: #555;
         }
 
-        .botao-sair {
+        .botao-sair,
+        .botao-voltar {
             background: #555;
             white-space: nowrap;
+        }
+
+        .botao-sair:hover,
+        .botao-voltar:hover {
+            background: #333;
         }
 
         .grade-botoes {
@@ -102,10 +108,7 @@
 
         .secao.ativa { display: block; }
 
-        .botao-voltar {
-            margin-bottom: 18px;
-            background: #555;
-        }
+        .botao-voltar { margin-bottom: 18px; }
 
         .aviso {
             margin-top: 20px;
@@ -160,174 +163,123 @@
                     <h1>Painel administrativo</h1>
                     <p>Escolha uma área para abrir.</p>
                 </div>
+
                 <button type="button" class="botao-sair" id="sairButton">
                     Sair
                 </button>
             </div>
 
+            <!-- Página principal: duas áreas separadas -->
             <section id="inicio">
                 <div class="grade-botoes">
-                    <button type="button" data-area="agendamentos">Agendamentos</button>
-                    <button type="button" data-area="mensalistas">Clientes mensalistas</button>
-                    <button type="button" data-area="veiculos">Veículos</button>
-                    <button type="button" data-area="lavagens">Lavagens e histórico</button>
-                    <button type="button" data-area="pagamentos">Pagamentos</button>
-                    <button type="button" data-area="planos">Planos e preços</button>
+                    <button type="button" data-area="mensalistas">
+                        Administração de Mensalistas
+                    </button>
+
+                    <button type="button" data-area="agendamentos">
+                        Administração de Agendamentos
+                    </button>
                 </div>
 
                 <div class="aviso">
-                    As áreas estão organizadas, mas ainda serão conectadas aos dados
-                    e às funções aos poucos.
+                    Escolha uma área. As funções serão conectadas aos dados
+                    aos poucos.
                 </div>
             </section>
 
-            <section class="secao" id="area-agendamentos">
-                <button type="button" class="botao-voltar">← Voltar às áreas</button>
-                <h2>Agendamentos</h2>
-                <p class="texto-ajuda">Esta área está em preparação. Aqui ficará a gestão dos agendamentos.</p>
-            </section>
-
+            <!-- Menu de mensalistas -->
             <section class="secao" id="area-mensalistas">
-                <button type="button" class="botao-voltar">← Voltar às áreas</button>
-                <h2>Clientes mensalistas</h2>
-                <input type="search" id="buscaMensalistas" placeholder="Buscar cliente mensalista">
-                <p class="texto-ajuda">Esta área está em preparação. A busca será ligada à lista de clientes quando os dados forem conectados.</p>
+                <button type="button" class="botao-voltar" data-voltar="inicio">
+                    ← Voltar às áreas principais
+                </button>
+
+                <h2>Administração de Mensalistas</h2>
+                <p class="texto-ajuda">Escolha o que deseja administrar.</p>
+
+                <div class="grade-botoes">
+                    <button type="button" data-area="planos">Planos</button>
+                    <button type="button" data-area="painel-clientes">Painel de clientes</button>
+                    <button type="button" data-area="registro-lavagem">Registro de lavagem</button>
+                    <button type="button" data-area="mensalista">Mensalista</button>
+                </div>
             </section>
 
-            <section class="secao" id="area-veiculos">
-                <button type="button" class="botao-voltar">← Voltar às áreas</button>
-                <h2>Veículos</h2>
-                <p class="texto-ajuda">Esta área está em preparação. Aqui ficará a consulta e gestão dos veículos.</p>
+            <!-- Menu de agendamentos -->
+            <section class="secao" id="area-agendamentos">
+                <button type="button" class="botao-voltar" data-voltar="inicio">
+                    ← Voltar às áreas principais
+                </button>
+
+                <h2>Administração de Agendamentos</h2>
+                <p class="texto-ajuda">Escolha uma função para administrar.</p>
+
+                <div class="grade-botoes">
+                    <button type="button" data-area="servicos">Serviços</button>
+                </div>
             </section>
 
-            <section class="secao" id="area-lavagens">
-                <button type="button" class="botao-voltar">← Voltar às áreas</button>
-                <h2>Lavagens e histórico</h2>
-                <p class="texto-ajuda">Esta área está em preparação. Aqui ficará o histórico dos serviços realizados.</p>
+            <!-- Quatro categorias dentro de Serviços -->
+            <section class="secao" id="area-servicos">
+                <button type="button" class="botao-voltar" data-voltar="agendamentos">
+                    ← Voltar aos agendamentos
+                </button>
+
+                <h2>Serviços</h2>
+                <p class="texto-ajuda">Escolha a categoria de serviços que deseja gerenciar.</p>
+
+                <div class="grade-botoes">
+                    <button type="button" data-area="servicos-basicos">Serviços básicos</button>
+                    <button type="button" data-area="servicos-essenciais">Serviços essenciais</button>
+                    <button type="button" data-area="estetica-automotiva">Estética automotiva</button>
+                    <button type="button" data-area="servico-premium">Serviço Premium</button>
+                </div>
             </section>
 
-            <section class="secao" id="area-pagamentos">
-                <button type="button" class="botao-voltar">← Voltar às áreas</button>
-                <h2>Pagamentos</h2>
-                <p class="texto-ajuda">Esta área está em preparação. Aqui ficarão os registros de pagamentos.</p>
-            </section>
-
+            <!-- Telas provisórias: mensalistas -->
             <section class="secao" id="area-planos">
-                <button type="button" class="botao-voltar">← Voltar às áreas</button>
-                <h2>Planos e preços</h2>
-                <p class="texto-ajuda">Esta área está em preparação. Aqui ficará a gestão de planos e preços.</p>
+                <button type="button" class="botao-voltar" data-voltar="mensalistas">← Voltar aos mensalistas</button>
+                <h2>Planos</h2>
+                <p class="texto-ajuda">Esta área será usada para administrar os planos.</p>
             </section>
-        </section>
-    </main>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import {
-            getAuth,
-            sendSignInLinkToEmail,
-            isSignInWithEmailLink,
-            signInWithEmailLink,
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+            <section class="secao" id="area-painel-clientes">
+                <button type="button" class="botao-voltar" data-voltar="mensalistas">← Voltar aos mensalistas</button>
+                <h2>Painel de clientes</h2>
+                <input type="search" id="buscaMensalistas" placeholder="Buscar cliente mensalista">
+                <p class="texto-ajuda">Aqui ficará a consulta e a gestão dos clientes mensalistas.</p>
+            </section>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDOnB_h4X_2qWjiw5fSuK8w0i8e_NAXByY",
-            authDomain: "lava-jato-palmares-b-a-093.firebaseapp.com",
-            projectId: "lava-jato-palmares-b-a-093",
-            storageBucket: "lava-jato-palmares-b-a-093.firebasestorage.app",
-            messagingSenderId: "170054342057",
-            appId: "1:170054342057:web:f86f0794a66a4cae06a0b8",
-            measurementId: "G-4SDYN56CNQ"
-        };
+            <section class="secao" id="area-registro-lavagem">
+                <button type="button" class="botao-voltar" data-voltar="mensalistas">← Voltar aos mensalistas</button>
+                <h2>Registro de lavagem</h2>
+                <p class="texto-ajuda">Aqui ficará o registro das lavagens dos mensalistas.</p>
+            </section>
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const adminEmail = "lavajatopalmares375@gmail.com";
+            <section class="secao" id="area-mensalista">
+                <button type="button" class="botao-voltar" data-voltar="mensalistas">← Voltar aos mensalistas</button>
+                <h2>Mensalista</h2>
+                <p class="texto-ajuda">Esta área será preparada para as funções de mensalista.</p>
+            </section>
 
-        const actionCodeSettings = {
-            url: "https://ccn-3-7-5.github.io/Lava-jato-palmares-B-A-093/admin.html",
-            handleCodeInApp: true
-        };
+            <!-- Telas provisórias: categorias de serviços -->
+            <section class="secao" id="area-servicos-basicos">
+                <button type="button" class="botao-voltar" data-voltar="servicos">← Voltar aos serviços</button>
+                <h2>Serviços básicos</h2>
+                <p class="texto-ajuda">Aqui ficará a gestão desta categoria de serviços.</p>
+            </section>
 
-        const loginArea = document.getElementById("loginArea");
-        const painel = document.getElementById("painel");
-        const message = document.getElementById("message");
+            <section class="secao" id="area-servicos-essenciais">
+                <button type="button" class="botao-voltar" data-voltar="servicos">← Voltar aos serviços</button>
+                <h2>Serviços essenciais</h2>
+                <p class="texto-ajuda">Aqui ficará a gestão desta categoria de serviços.</p>
+            </section>
 
-        function mostrarPainel() {
-            loginArea.style.display = "none";
-            painel.style.display = "block";
-            mostrarInicio();
-        }
-        function mostrarInicio() {
-            document.getElementById("inicio").style.display = "block";
-            document.querySelectorAll(".secao").forEach(function (secao) {
-                secao.classList.remove("ativa");
-            });
-        }
+            <section class="secao" id="area-estetica-automotiva">
+                <button type="button" class="botao-voltar" data-voltar="servicos">← Voltar aos serviços</button>
+                <h2>Estética automotiva</h2>
+                <p class="texto-ajuda">Aqui ficará a gestão desta categoria de serviços.</p>
+            </section>
 
-        function abrirArea(nome) {
-            document.getElementById("inicio").style.display = "none";
-            document.querySelectorAll(".secao").forEach(function (secao) {
-                secao.classList.remove("ativa");
-            });
-            document.getElementById("area-" + nome).classList.add("ativa");
-        }
-
-        document.querySelectorAll("[data-area]").forEach(function (botao) {
-            botao.addEventListener("click", function () {
-                abrirArea(botao.dataset.area);
-            });
-        });
-
-        document.querySelectorAll(".botao-voltar").forEach(function (botao) {
-            botao.addEventListener("click", mostrarInicio);
-        });
-
-        document.getElementById("loginButton").addEventListener("click", async function () {
-            const email = document.getElementById("emailInput").value.trim().toLowerCase();
-            if (email !== adminEmail) {
-                message.textContent = "Este e-mail não tem acesso.";
-                return;
-            }
-            try {
-                await sendSignInLinkToEmail(auth, email, actionCodeSettings);
-                window.localStorage.setItem("emailParaLogin", email);
-                message.textContent = "Link enviado! Abra o e-mail e toque no link.";
-            } catch (erro) {
-                message.textContent = "Erro ao enviar o link: " + erro.message;
-            }
-        });
-
-        document.getElementById("sairButton").addEventListener("click", function () {
-            signOut(auth);
-        });
-
-        onAuthStateChanged(auth, function (usuario) {
-            if (usuario && usuario.email === adminEmail) {
-                mostrarPainel();
-            } else {
-                loginArea.style.display = "block";
-                painel.style.display = "none";
-            }
-        });
-
-        async function terminarLogin() {
-            if (!isSignInWithEmailLink(auth, window.location.href)) return;
-            let email = window.localStorage.getItem("emailParaLogin");
-            if (!email) {
-                email = window.prompt("Confirme o e-mail do administrador:");
-            }
-            try {
-                await signInWithEmailLink(auth, email, window.location.href);
-                window.localStorage.removeItem("emailParaLogin");
-                window.history.replaceState({}, document.title, window.location.pathname);
-            } catch (erro) {
-                message.textContent = "Erro ao entrar: " + erro.message;
-            }
-        }
-
-        terminarLogin();
-    </script>
-</body>
-</html>
+            <section class="secao" id="area-servico-premium">
+                <button type="button" class="botao-voltar" data-voltar="servicos">← Voltar aos serviços</button>
+                <h2>Serviço Premium</
